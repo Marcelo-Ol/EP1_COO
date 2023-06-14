@@ -8,8 +8,9 @@ public class Spot {
      * @param pos Posição do espaço no tabuleiro
      * @param color Cor do espaço no tabuleiro (Templo)
      */
+    
     public Spot(Piece piece, Position pos, Color color) {
-
+        
     }
 
     /**

@@ -36,6 +36,7 @@ public class Player {
      * @return Enum Color com a cor das peças do jogador
      */
     public Color getPieceColor() {
+        Piece.getColor();
         return null;
     }
 
