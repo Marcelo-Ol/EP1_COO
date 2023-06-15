@@ -13,7 +13,7 @@ public class Piece {
 
     public Piece(Color color, boolean isMaster) {
         this.color = color;
-        this.isMaster = isMaster(isMaster);
+        this.isMaster = isMaster;
     }
 
     /**
@@ -21,8 +21,8 @@ public class Piece {
      * @return Enum Color com a cor da peça
      */
     public Color getColor() {
-       // return cor; ?
-        return null;
+        return color;
+        // cor fora do enum (exception)
     }
 
     /**
@@ -30,7 +30,7 @@ public class Piece {
      * @return Booleano true para caso seja um mestre e false caso contrário
      */
     public boolean isMaster(boolean isMaster) {
-        if(meio da matriz)
+        if(isMaster)
             return true;
         else
             return false;
