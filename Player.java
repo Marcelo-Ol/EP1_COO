@@ -4,7 +4,7 @@
 
 public class Player {
     private String name; 
-    Color pieceColor;
+    private Color pieceColor;
     private Card[] cards;
 
 

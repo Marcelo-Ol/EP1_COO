@@ -11,12 +11,12 @@ public class Card {
 
      private String name;
      private Color color;
-     //positions
+     private Position[] positions;
 
     public Card(String name, Color color, Position[] positions) {
         this.name = name;
         this.color = color;
-        //this.position
+        this.positions = positions;
     }
 
     /**
