@@ -7,7 +7,6 @@ public class Player {
     private Color pieceColor;
     private Card[] cards;
 
-
     /**
      * Construtor que define informações básicas do jogador
      * @param name Nome do jogador
@@ -65,6 +64,8 @@ public class Player {
      * @exception InvalidCardException Caso a carta não esteja na mão do jogador e/ou na mesa
      */
     protected void swapCard(Card oldCard, Card newCard) throws InvalidCardException {
-
+        Card temp = oldCard;
+        oldCard = newCard;
+        newCard = temp;
     }
 }
