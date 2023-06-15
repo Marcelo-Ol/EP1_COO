@@ -8,12 +8,12 @@ public class Piece {
      * @param isMaster Se o tipo da peça é mestre ou não
      */
 
-    private Color cor;
-    private boolean mestre;
+    private Color color;
+    private boolean isMaster;
 
     public Piece(Color color, boolean isMaster) {
-        this.cor = color;
-        this.mestre = isMaster(isMaster);
+        this.color = color;
+        this.isMaster = isMaster(isMaster);
     }
 
     /**

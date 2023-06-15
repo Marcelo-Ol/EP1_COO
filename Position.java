@@ -7,8 +7,8 @@ public class Position {
      * @param row Linha
      * @param col Coluna
      */
-    private int linha;
-    private int coluna;
+    private int row;
+    private int col;
     public Position(int row, int col) {
 
     }

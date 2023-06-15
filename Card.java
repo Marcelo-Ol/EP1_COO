@@ -9,13 +9,13 @@ public class Card {
      * @param positions Todas as posições relativas de movimento
      */
 
-     private String nomeCarta;
-     private Color corCarta;
+     private String name;
+     private Color color;
      //position
 
     public Card(String name, Color color, Position[] positions) {
-        this.nomeCarta = name;
-        this.corCarta = color;
+        this.name = name;
+        this.color = color;
         //this.position
     }
 
@@ -24,7 +24,7 @@ public class Card {
      * @return String que contém o nome da carta
      */
     public String getName() {
-        return nomeCarta;
+        return name;
         //return null;
     }
 
@@ -33,7 +33,7 @@ public class Card {
      * @return Enum Color que contém a cor da carta
      */
     public Color getColor() {
-        return corCarta;
+        return color;
         //return null;
     }
 
