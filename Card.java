@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Collections;
+
 /**
  * Classe que contém informações das cartas
  */
@@ -12,6 +15,10 @@ public class Card {
      private String name;
      private Color color;
      private Position[] positions;
+    
+    private static ArrayList<Card> cartas = new ArrayList<Card>();
+    private static Card todasCartas[];
+     private static Card devolveCartas[];
 
     public Card(String name, Color color, Position[] positions) {
         this.name = name;
@@ -25,7 +32,6 @@ public class Card {
      */
     public String getName() {
         return name;
-        //return null;
     }
 
     /**
@@ -42,7 +48,7 @@ public class Card {
      * @return Um array de Position contendo todas as possíveis posições de movimento em relação ao ponto de origem
      */
     public Position[] getPositions() {
-        return null;
+        return positions;
     }
 
     /**
@@ -50,5 +56,14 @@ public class Card {
      * @return Vetor de cartas com todas as cartas do jogo
      */
     public static Card[] createCards() {
-        return null;
+        //cria cartas
+
+        //embaralha
+        Collections.shuffle(cartas);
+		for (int i = 0; i <= 7; i++)
+			todasCartas[i] = cartas.get(i);
+        //devolve as 5
+        for (int i = 0; i < 5; i++)
+			devolveCartas[i] = cartas.get(i);
+        return devolveCartas;
     }}
