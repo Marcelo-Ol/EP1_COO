@@ -5,12 +5,9 @@
 public class Player {
     private String name; 
     Color pieceColor;
-    private boolean isMaster;
+    private Card[] cards;
 
-    Piece piece = new Piece(pieceColor, isMaster);
-    //Card
 
-    
     /**
      * Construtor que define informações básicas do jogador
      * @param name Nome do jogador
@@ -18,7 +15,9 @@ public class Player {
      * @param cards Cartas na mão do jogador
      */
     public Player(String name, Color pieceColor, Card[] cards) {
-
+        this.name = name;
+        this.pieceColor = pieceColor;
+        this.cards = cards;
     }
 
     /**
@@ -29,7 +28,10 @@ public class Player {
      * @param card2 A segunda carta na mão do jogador
      */
     public Player(String name, Color pieceColor, Card card1, Card card2) {
-
+        this.name = name;
+        this.pieceColor = pieceColor;
+        this.cards[0] = card1;
+        this.cards[1] = card2;
     }
 
     /**
@@ -37,7 +39,7 @@ public class Player {
      * @return String com o nome do jogador(a)
      */
     public String getName() {
-        return null;
+        return name;
     }
 
     /**
@@ -45,7 +47,6 @@ public class Player {
      * @return Enum Color com a cor das peças do jogador
      */
     public Color getPieceColor() {
-        Color pieceColor = piece.getColor();
         return pieceColor;
     }
 
@@ -54,7 +55,7 @@ public class Player {
      * @return Booleano true para caso seja um mestre e false caso contrário
      */
     public Card[] getCards() {
-        return null;
+        return cards;
     }
 
     /**
