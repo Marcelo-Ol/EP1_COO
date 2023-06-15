@@ -1,7 +1,16 @@
 /**
  * Classe que contém informações e ações básicas relacionadas aos jogadores
  */
+
 public class Player {
+    private String name; 
+    Color pieceColor;
+    private boolean isMaster;
+
+    Piece piece = new Piece(pieceColor, isMaster);
+    //Card
+
+    
     /**
      * Construtor que define informações básicas do jogador
      * @param name Nome do jogador
@@ -36,8 +45,8 @@ public class Player {
      * @return Enum Color com a cor das peças do jogador
      */
     public Color getPieceColor() {
-        Piece.getColor();
-        return null;
+        Color pieceColor = piece.getColor();
+        return pieceColor;
     }
 
     /**

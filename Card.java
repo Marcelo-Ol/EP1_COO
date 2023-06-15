@@ -11,7 +11,7 @@ public class Card {
 
      private String name;
      private Color color;
-     //position
+     //positions
 
     public Card(String name, Color color, Position[] positions) {
         this.name = name;
@@ -34,7 +34,6 @@ public class Card {
      */
     public Color getColor() {
         return color;
-        //return null;
     }
 
     /**
