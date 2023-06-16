@@ -4,16 +4,15 @@ import java.util.ArrayList;
  * Classe que contém informações das peças de jogo
  */
 public class Piece { 
+    public Color color;
+    private boolean isMaster;
+    public ArrayList<Piece> pieces;
+
     /**
      * Construtor que define a cor e o tipo da peça
      * @param color Cor da peça
      * @param isMaster Se o tipo da peça é mestre ou não
      */
-
-    public Color color;
-    private boolean isMaster;
-    public ArrayList<Piece> pieces;
-
     public Piece(Color color, boolean isMaster) {
         this.color = color;
         this.isMaster = isMaster;

@@ -5,21 +5,20 @@ import java.util.Collections;
  * Classe que contém informações das cartas
  */
 public class Card {
+    private String name;
+    private Color color;
+    private Position[] positions;
+    
+    private static ArrayList<Card> cartas = new ArrayList<Card>();
+    private static Card todasCartas[];
+    private static Card devolveCartas[];
+
     /**
      * Construtor que define os principais atributos de uma cara
      * @param name Nome da carta
      * @param color Cor da carta
      * @param positions Todas as posições relativas de movimento
      */
-
-     private String name;
-     private Color color;
-     private Position[] positions;
-    
-    private static ArrayList<Card> cartas = new ArrayList<Card>();
-    private static Card todasCartas[];
-     private static Card devolveCartas[];
-
     public Card(String name, Color color, Position[] positions) {
         this.name = name;
         this.color = color;
