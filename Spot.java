@@ -9,6 +9,10 @@ public class Spot {
      * @param color Cor do espaço no tabuleiro (Templo)
      */
     
+     private Piece piece;
+     private Position pos;
+     private Color color;
+
     public Spot(Piece piece, Position pos, Color color) {
         
     }
@@ -19,7 +23,8 @@ public class Spot {
      * @param pos Posição do espaço no tabuleiro
      */
     public Spot(Piece piece, Position pos) {
-
+        this.piece = piece;
+        this.pos = pos;
     }
 
     /**

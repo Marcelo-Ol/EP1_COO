@@ -10,20 +10,20 @@ public class Piece {
      * @param isMaster Se o tipo da peça é mestre ou não
      */
 
-    private Color color;
+    public Color color;
     private boolean isMaster;
-    private ArrayList<Piece> pieces;
+    public ArrayList<Piece> pieces;
 
     public Piece(Color color, boolean isMaster) {
         this.color = color;
         this.isMaster = isMaster;
     }
 
-    // Array de peças DEPOIS TIRAR PLMDS
-    public ArrayList<Piece> ArrayPieces(int row, Color cor){
-        Piece peça = new Piece(cor.BLUE, false);
+    // Array de peças (DEPOIS TIRAR PLMDS)
+    public void ArrayPieces(int row){
+        Piece peça = new Piece(Color.BLUE, false);
 
-        for(int i = 0; i < 10; i++){
+        for(int i = 0; i < 11; i++){
             boolean mestre = false;
 
             if(i == 2 || i == 7){
@@ -31,16 +31,26 @@ public class Piece {
             }
 
             if(row == 0){
-                peça = new Piece(cor.BLUE, mestre);
+                peça = new Piece(Color.BLUE, mestre);
             }
             if(row == 4){
-                peça = new Piece(cor.RED, mestre);
+                peça = new Piece(Color.RED, mestre);
             }
 
             this.pieces.add(i, peça);
         }
-        return pieces;
     }
+
+    /* FOI UM TESTE COM O ARRAY D GAME
+    // getPiece para tirar a peça do array
+    public Piece getPiece(int position) {
+    for (Piece piece : pieces) {
+        if (piece.getPosition() == position) {
+            return piece;
+        }
+    }
+    return null; // Retorna null se nenhuma peça for encontrada na posição desejada
+}*/ 
 
     /**
      * Método que devolve a cor da peça
