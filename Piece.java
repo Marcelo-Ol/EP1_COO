@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * Classe que contém informações das peças de jogo
  */
@@ -10,10 +12,34 @@ public class Piece {
 
     private Color color;
     private boolean isMaster;
+    private ArrayList<Piece> pieces;
 
     public Piece(Color color, boolean isMaster) {
         this.color = color;
         this.isMaster = isMaster;
+    }
+
+    // Array de peças DEPOIS TIRAR PLMDS
+    public ArrayList<Piece> ArrayPieces(int row, Color cor){
+        Piece peça = new Piece(cor.BLUE, false);
+
+        for(int i = 0; i < 10; i++){
+            boolean mestre = false;
+
+            if(i == 2 || i == 7){
+                mestre = true;
+            }
+
+            if(row == 0){
+                peça = new Piece(cor.BLUE, mestre);
+            }
+            if(row == 4){
+                peça = new Piece(cor.RED, mestre);
+            }
+
+            this.pieces.add(i, peça);
+        }
+        return pieces;
     }
 
     /**
