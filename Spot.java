@@ -67,13 +67,17 @@ public class Spot {
      * @exception IllegalMovementException Caso o espaço já esteja ocupado por uma peça da mesma cor
      */
     protected void occupySpot(Piece piece) throws IllegalMovementException {
-        
+         // Verifica se o espaço já está ocupado por uma peça da mesma cor 
+        if (this.piece != null && this.piece.getColor() == piece.getColor()) {
+        throw new IllegalMovementException("O espaço já está ocupado por uma peça da mesma cor.");
+    }
+        this.piece = piece;
     }
 
     /**
      * Método que "libera" o espaço atual, ou seja, deixa-o vazio
      */
     protected void releaseSpot() {
-
+    this.piece = null;
     }
 }
