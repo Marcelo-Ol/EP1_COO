@@ -63,7 +63,13 @@ public class GameImpl implements Game {
      * @Override
      */
     public Card getTableCard(){
-       
+        /*GameImpl game = new GameImpl();
+        Card[] todasCartas = Card.createCards();
+        Player jogador1 = game.getRedPlayer();
+        Player jogador2 = game.getBluePlayer();
+        Card cartas1 = new Card(jogador1, Color.RED, null);
+        Card cartas2 = new Card(jogador2, Color.BLUE, null);
+        Como fazer isso? Card TableCard = todasCartas - (cartas1 + cartas2); */
     }
 
      /**
