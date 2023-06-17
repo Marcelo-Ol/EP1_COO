@@ -82,11 +82,7 @@ public interface Game {
      * @return Um booleano true para caso esteja em condições de vencer e false caso contrário
      */
     boolean checkVictory(Color color);
-    // temporário
-    if(mestre tomado || mestre ocupou templo adversário){
-        return true;
-    }
-    return false;
+    
     /**
      * Método que imprime o tabuleiro no seu estado atual
      * OBS: Esse método é opcional não será utilizado na correção, mas serve para acompanhar os resultados parciais do jogo
