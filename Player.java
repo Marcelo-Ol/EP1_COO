@@ -63,9 +63,25 @@ public class Player {
      * @param newCard A carta que irá substituir
      * @exception InvalidCardException Caso a carta não esteja na mão do jogador e/ou na mesa
      */
-    protected void swapCard(Card oldCard, Card newCard) throws InvalidCardException {
+    protected void swapCard(Card oldCard, Card newCard) throws InvalidCardException { 
+        //if (newCard == null || newCard na mão do jogador || newCard na mesa) {
+          //  throw new InvalidCardException("A carta não está na mão do jogador e/ou na mesa");
+        //}
+        if (!cardInGame(newCard)) {
+            throw new InvalidCardException("A carta não está na mão do jogador e/ou na mesa");
+        }
         Card temp = oldCard;
         oldCard = newCard;
         newCard = temp;
+    }
+
+    protected Boolean cardInGame(Card carta){
+        Card[] cartas = Card.createCards();
+        Card newCard = carta;
+            for(int i = 0; i < 5; i++){
+            if (newCard == cartas[i]) 
+                return true;
+            }
+        return false;
     }
 }
