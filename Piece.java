@@ -18,7 +18,7 @@ public class Piece {
         this.isMaster = isMaster;
     }
 
-    // Array de peças (DEPOIS TIRAR PLMDS)
+    /*Array de peças (DEPOIS TIRAR PLMDS)
     public void ArrayPieces(int row){
         Piece peça = new Piece(Color.BLUE, false);
 
@@ -38,18 +38,18 @@ public class Piece {
 
             this.pieces.add(i, peça);
         }
-    }
+    }*/
 
     /* FOI UM TESTE COM O ARRAY D GAME
-    // getPiece para tirar a peça do array
-    public Piece getPiece(int position) {
+    // getPiece para tirar a peça do array*/
+    public Piece getPiece(Position position) {
     for (Piece piece : pieces) {
-        if (piece.getPosition() == position) {
+        if (piece.getPosition().equals(position)) {
             return piece;
         }
     }
     return null; // Retorna null se nenhuma peça for encontrada na posição desejada
-}*/ 
+} 
 
     /**
      * Método que devolve a cor da peça

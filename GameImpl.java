@@ -1,4 +1,6 @@
 
+import java.util.ArrayList;
+
 public class GameImpl implements Game {
 
     private String jogador1;
@@ -162,10 +164,36 @@ public class GameImpl implements Game {
      * @Override
      */
     public boolean checkVictory(Color color){
-    // temporário
-    if(mestre tomado || mestre ocupou templo adversário){
-        return true;
+        Piece playerMestre = null;
+        Piece opponentMestre = null;
+        ArrayList<Piece> pieces = getPieces(); 
+
+    // Encontrar o mestre do jogador e do adversário
+    for (Piece piece : pieces) {
+        if (piece.getColor().equals(color) && piece.isMaster()) {
+            playerMestre = piece;
+        } else if(!piece.getColor().equals(color) && piece.isMaster()) {
+            opponentMestre = piece;
+        }
     }
+
+    // Verificar se o mestre adversário foi capturado
+    if (opponentMestre == null) {
+        return true; // Mestre adversário foi capturado
+    }
+
+    // Verificar se o mestre do jogador ocupou o templo adversário
+    Position temploAdversarioPosition;
+    if (color == Color.BLUE) {
+        temploAdversarioPosition = new Position(0, 2);
+    } else {
+        temploAdversarioPosition = new Position(4, 2);
+    }
+
+    if (playerMestre != null && playerMestre.getPosition().getRow() == temploAdversarioPosition.getRow() && playerMestre.getPosition().getCol() == temploAdversarioPosition.getCol()) {
+        return true; // Mestre do jogador ocupou o templo adversário
+    }
+
     return false;
     }
 
