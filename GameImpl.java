@@ -63,14 +63,26 @@ public class GameImpl implements Game {
      * @Override
      */
     public Card getTableCard(){
-        /*GameImpl game = new GameImpl();
-        Card[] todasCartas = Card.createCards();
-        Player jogador1 = game.getRedPlayer();
-        Player jogador2 = game.getBluePlayer();
-        Card cartas1 = new Card(jogador1, Color.RED, null);
-        Card cartas2 = new Card(jogador2, Color.BLUE, null);
-        Como fazer isso? Card TableCard = todasCartas - (cartas1 + cartas2); */
-    }
+       /*  GameImpl game = new GameImpl();  
+
+        Card[] todasCartas = Card.createCards(); 
+        Player jogador1 = game.getRedPlayer();    
+        Player jogador2 = game.getBluePlayer();  
+        
+        Card cartas1 = new Card(jogador1, Color.RED, Nao sei a posição);
+        Card cartas2 = new Card(jogador2, Color.BLUE, Nao sei a posição);
+
+        Card tableCard = null;
+
+        for (Card card : todasCartas) {
+            if (!card.equals(cartas1) && !card.equals(cartas2)) {
+                tableCard = card;
+                break;
+            }
+        }
+
+    return tableCard;*/
+}
 
      /**
      * Método que devolve as informações sobre o jogador com as peças vermelhas
@@ -102,8 +114,42 @@ public class GameImpl implements Game {
      * @Override
      */
     public void makeMove(Card card, Position cardMove, Position currentPos) throws IncorrectTurnOrderException, IllegalMovementException, InvalidCardException, InvalidPieceException{
-
+    /* Verificar se é a vez do jogador fazer um movimento
+    if (!isPlayerTurn()) {
+        throw new IncorrectTurnOrderException("Não é a vez do jogador fazer um movimento.");
     }
+
+    // Verificar se a carta está na mão do jogador
+    if (!isCardInHand(card)) {
+        throw new InvalidCardException("A carta não está na mão do jogador.");
+    }
+
+    // Obter a peça atualmente na posição atual
+    Piece currentPiece = getPieceAtPosition(currentPos);
+
+    // Verificar se há uma peça na posição atual
+    if (currentPiece == null) {
+        throw new InvalidPieceException("Não há uma peça na posição atual.");
+    }
+
+    // Verificar se a peça está movendo para fora do tabuleiro
+    if (isOutOfBounds(cardMove)) {
+        throw new IllegalMovementException("A peça está sendo movida para fora do tabuleiro.");
+    }
+
+    // Verificar se há uma peça da mesma cor na posição de destino
+    Piece targetPiece = getPieceAtPosition(cardMove);
+    if (targetPiece != null && targetPiece.getColor() == currentPiece.getColor()) {
+        throw new IllegalMovementException("A peça não pode ser movida para uma posição ocupada por uma peça da mesma cor.");
+    }
+
+    // Realizar o movimento da peça
+    movePiece(currentPos, cardMove);
+
+    // Remover a carta da mão do jogador
+    removeCardFromHand(card);
+}
+    }*/
     
     /**
      * Método que confere se um jogador de uma determinada cor venceu o jogo. Critérios de vitória:

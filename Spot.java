@@ -77,6 +77,6 @@ public class Spot {
      * Método que "libera" o espaço atual, ou seja, deixa-o vazio
      */
     protected void releaseSpot() {
-    this.piece = null;
+        this.piece = null;
     }
 }
