@@ -6,7 +6,7 @@
 public class Piece { 
     private Color color;
     private boolean isMaster;
-    private Position pos = new Position(0, 0);
+    private Position position = new Position(0, 0);
 
     /**
      * Construtor que define a cor e o tipo da peça
@@ -58,5 +58,9 @@ public class Piece {
      */
     public boolean isMaster() {
         return isMaster;
-}
+    }
+
+    public Position getPosition() throws ArrayIndexOutOfBoundsException{
+        return position;
+    }
 }

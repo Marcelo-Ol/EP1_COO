@@ -91,5 +91,9 @@ public interface Game {
      */
     void printBoard();
 
+    /**
+     * 
+     * @return
+     */
     public ArrayList<Piece> getPiece();
 }
