@@ -55,8 +55,6 @@ public class Card {
      * @return Vetor de cartas com todas as cartas do jogo
      */
     public static Card[] createCards() {
-        //cria cartas
-
         //embaralha
         Collections.shuffle(cartas);
 		for (int i = 0; i <= 7; i++)

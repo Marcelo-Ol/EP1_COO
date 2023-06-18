@@ -114,25 +114,14 @@ public class GameImpl implements Game {
      * @Override
      */
     public void makeMove(Card card, Position cardMove, Position currentPos) throws IncorrectTurnOrderException, IllegalMovementException, InvalidCardException, InvalidPieceException{
-    /* Verificar se é a vez do jogador fazer um movimento
-    if (!isPlayerTurn()) {
+    
+    //Verificar se é a vez do jogador fazer um movimento
+    if (!isPlayerTurn()) { 
+        //é um turno quando: 1- A primeira carta da mesa é da sua cor 2- Quando o adversário jogou sua carta e moveu sua peça
         throw new IncorrectTurnOrderException("Não é a vez do jogador fazer um movimento.");
     }
 
-    // Verificar se a carta está na mão do jogador
-    if (!isCardInHand(card)) {
-        throw new InvalidCardException("A carta não está na mão do jogador.");
-    }
-
-    // Obter a peça atualmente na posição atual
-    Piece currentPiece = getPieceAtPosition(currentPos);
-
-    // Verificar se há uma peça na posição atual
-    if (currentPiece == null) {
-        throw new InvalidPieceException("Não há uma peça na posição atual.");
-    }
-
-    // Verificar se a peça está movendo para fora do tabuleiro
+     // Verificar se a peça está movendo para fora do tabuleiro
     if (isOutOfBounds(cardMove)) {
         throw new IllegalMovementException("A peça está sendo movida para fora do tabuleiro.");
     }
@@ -143,13 +132,26 @@ public class GameImpl implements Game {
         throw new IllegalMovementException("A peça não pode ser movida para uma posição ocupada por uma peça da mesma cor.");
     }
 
+    // Verificar se a carta está na mão do jogador
+    if (!isCardInHand(card)) {
+        throw new InvalidCardException("A carta usada não está na mão do jogador.");
+    }
+
+    // Obter a peça atualmente na posição atual
+    Piece currentPiece = getPieceAtPosition(currentPos);
+
+    // Verificar se há uma peça na posição atual
+    if (currentPiece == null) {
+        throw new InvalidPieceException("Não há uma peça na posição atual.");
+    }
+
     // Realizar o movimento da peça
     movePiece(currentPos, cardMove);
 
     // Remover a carta da mão do jogador
     removeCardFromHand(card);
 }
-    }*/
+    }
     
     /**
      * Método que confere se um jogador de uma determinada cor venceu o jogo. Critérios de vitória:
@@ -174,5 +176,9 @@ public class GameImpl implements Game {
      */
     public void printBoard(){
 
+    }
+
+    protected void changeTurn(){
+        
     }
 }
