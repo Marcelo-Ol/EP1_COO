@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * Interface que contém métodos que serão chamados para a execução do jogo
  */
@@ -88,4 +90,6 @@ public interface Game {
      * OBS: Esse método é opcional não será utilizado na correção, mas serve para acompanhar os resultados parciais do jogo
      */
     void printBoard();
+
+    public ArrayList<Piece> getPiece();
 }

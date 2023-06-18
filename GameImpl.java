@@ -6,6 +6,8 @@ public class GameImpl implements Game {
     private String jogador1;
     private String jogador2;
     public Card[] cartas;
+    private ArrayList<Piece> pecas = new ArrayList<Piece>();
+  
     //array de card cartas
 
      /**
@@ -65,14 +67,14 @@ public class GameImpl implements Game {
      * @Override
      */
     public Card getTableCard(){
-       /*  GameImpl game = new GameImpl();  
+       GameImpl game = new GameImpl();  
 
         Card[] todasCartas = Card.createCards(); 
         Player jogador1 = game.getRedPlayer();    
         Player jogador2 = game.getBluePlayer();  
         
-        Card cartas1 = new Card(jogador1, Color.RED, Nao sei a posição);
-        Card cartas2 = new Card(jogador2, Color.BLUE, Nao sei a posição);
+        Card cartas1 = new Card(, Color.RED, );
+        Card cartas2 = new Card(, Color.BLUE, );
 
         Card tableCard = null;
 
@@ -83,7 +85,7 @@ public class GameImpl implements Game {
             }
         }
 
-    return tableCard;*/
+    return tableCard;
 }
 
      /**
@@ -116,7 +118,6 @@ public class GameImpl implements Game {
      * @Override
      */
     public void makeMove(Card card, Position cardMove, Position currentPos) throws IncorrectTurnOrderException, IllegalMovementException, InvalidCardException, InvalidPieceException{
-    
     //Verificar se é a vez do jogador fazer um movimento
     if (!isPlayerTurn()) { 
         //é um turno quando: 1- A primeira carta da mesa é da sua cor 2- Quando o adversário jogou sua carta e moveu sua peça
@@ -130,7 +131,7 @@ public class GameImpl implements Game {
 
     // Verificar se há uma peça da mesma cor na posição de destino
     Piece targetPiece = getPieceAtPosition(cardMove);
-    if (targetPiece != null && targetPiece.getColor() == currentPiece.getColor()) {
+    if (!targetPiece.equals(null) && targetPiece.getColor().equal(currentPiece.getColor())) {
         throw new IllegalMovementException("A peça não pode ser movida para uma posição ocupada por uma peça da mesma cor.");
     }
 
@@ -166,34 +167,34 @@ public class GameImpl implements Game {
     public boolean checkVictory(Color color){
         Piece playerMestre = null;
         Piece opponentMestre = null;
-        ArrayList<Piece> pieces = getPieces(); 
+        //<Piece> pieces = new ArrayList<Piece>();
 
-    // Encontrar o mestre do jogador e do adversário
-    for (Piece piece : pieces) {
-        if (piece.getColor().equals(color) && piece.isMaster()) {
-            playerMestre = piece;
-        } else if(!piece.getColor().equals(color) && piece.isMaster()) {
-            opponentMestre = piece;
+        // Encontrar o mestre do jogador e do adversário
+        for (Piece piece : pecas) {
+            if (piece.getColor().equals(color) && piece.isMaster()) {
+                playerMestre = piece;
+            } else if(!piece.getColor().equals(color) && piece.isMaster()) {
+                opponentMestre = piece;
+            }
         }
-    }
 
-    // Verificar se o mestre adversário foi capturado
-    if (opponentMestre == null) {
-        return true; // Mestre adversário foi capturado
-    }
+        // Verificar se o mestre adversário foi capturado
+        if (opponentMestre.equals(null)) {
+            return true; // Mestre adversário foi capturado
+        }
 
-    // Verificar se o mestre do jogador ocupou o templo adversário
-    Position temploAdversarioPosition;
-    if (color == Color.BLUE) {
-        temploAdversarioPosition = new Position(0, 2);
-    } else {
-        temploAdversarioPosition = new Position(4, 2);
-    }
+        // Verificar se o mestre do jogador ocupou o templo adversário
+        Position temploAdversarioPosition;
+        if (color.equals(Color.BLUE)) {
+            temploAdversarioPosition = new Position(4, 2);
+        } else if (color.equals(Color.RED)) {
+            temploAdversarioPosition = new Position(0, 2);
+        } else 
+            throw new InvalidColorException("Cor inválida");
 
-    if (playerMestre != null && playerMestre.getPosition().getRow() == temploAdversarioPosition.getRow() && playerMestre.getPosition().getCol() == temploAdversarioPosition.getCol()) {
-        return true; // Mestre do jogador ocupou o templo adversário
-    }
-
+        if (mestreAdversarioCapturado(playerMestre)) {
+            return true;
+        }
     return false;
     }
 
@@ -209,4 +210,21 @@ public class GameImpl implements Game {
     protected void changeTurn(){
         
     }
+    
+    public ArrayList<Piece> getPiece() {
+        int i = 0;
+        for (Piece piece : pecas) {
+            pecas.set(i, piece);
+            i++;
+        }
+    return pecas; 
+    }
+    
+    public boolean mestreAdversarioCapturado(Piece playerMestre){
+        if (!playerMestre.equals(null)) return false;
+        if (playerMestre.getPosition().getRow().equals(temploAdversarioPosition.getRow()) && playerMestre.getPosition().getCol().equals(temploAdversarioPosition.getCol())) {
+
+
+        }
+}
 }

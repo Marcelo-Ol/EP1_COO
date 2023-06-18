@@ -1,12 +1,12 @@
-import java.util.ArrayList;
+
 
 /**
  * Classe que contém informações das peças de jogo
  */
 public class Piece { 
-    public Color color;
+    private Color color;
     private boolean isMaster;
-    public ArrayList<Piece> pieces;
+    private Position pos = new Position(0, 0);
 
     /**
      * Construtor que define a cor e o tipo da peça
@@ -41,15 +41,7 @@ public class Piece {
     }*/
 
     /* FOI UM TESTE COM O ARRAY D GAME
-    // getPiece para tirar a peça do array*/
-    public Piece getPiece(Position position) {
-    for (Piece piece : pieces) {
-        if (piece.getPosition().equals(position)) {
-            return piece;
-        }
-    }
-    return null; // Retorna null se nenhuma peça for encontrada na posição desejada
-} 
+
 
     /**
      * Método que devolve a cor da peça
@@ -64,10 +56,7 @@ public class Piece {
      * Método que devolve se é um mestre ou não
      * @return Booleano true para caso seja um mestre e false caso contrário
      */
-    public boolean isMaster(boolean isMaster) {
-        if(isMaster)
-            return true;
-        else
-            return false;
-    }
+    public boolean isMaster() {
+        return isMaster;
+}
 }
