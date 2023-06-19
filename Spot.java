@@ -2,7 +2,6 @@
  * Classe contendo ações e informações sobre cada espaço (quadrado) no tabuleiro
  */
 public class Spot {
-
     private Piece piece;
     private Position pos;
     private Color color;

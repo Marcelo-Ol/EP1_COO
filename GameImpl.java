@@ -9,8 +9,11 @@ public class GameImpl implements Game {
     public Card[] cartas;
     private List<Piece> pecas = new ArrayList<Piece>();
     private static List<Spot> locais = new ArrayList<Spot>();
-    int contador = 0; //contador usado no isPlayerTurn()
-    Card[] todasCartas = Card.createCards(); 
+    private int contador = 0; //contador usado no isPlayerTurn()
+    private Card[] todasCartas = Card.createCards(); 
+    private Card[] cartasAzul = new Card[2];
+    private Card[] cartasVermelho = new Card[2];
+    Color color;  
   
     //array de card cartas
 
@@ -104,7 +107,7 @@ public class GameImpl implements Game {
      * @Override
      */
     public void makeMove(Card card, Position cardMove, Position currentPos) throws IncorrectTurnOrderException, IllegalMovementException, InvalidCardException, InvalidPieceException{
-        Color color; //
+        color = Color.RED; // Não sabemos como receber a cor sem ser um dado inserido
         if (!isPlayerTurn(color)) { 
             throw new IncorrectTurnOrderException("Não é a vez do jogador fazer um movimento.");
         }
@@ -131,9 +134,9 @@ public class GameImpl implements Game {
         currentPos.setCol(currentPos.getCol() + cardMove.getCol()); 
 
         if(card.getColor().equals(Color.BLUE)){
-            Player player = new Player(getBluePlayer().getName(), Color.BLUE, player.getCards());
+            Player player = new Player(getBluePlayer().getName(), Color.BLUE, cartasAzul);
         }
-        Player player = new Player(getRedPlayer().getName(), Color.RED, player.getCards());
+        Player player = new Player(getRedPlayer().getName(), Color.RED, cartasVermelho);
         player.swapCard(getTableCard(), card);
     }
 
