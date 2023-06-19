@@ -7,6 +7,7 @@ public class GameImpl implements Game {
     private String jogador2;
     public Card[] cartas;
     private ArrayList<Piece> pecas = new ArrayList<Piece>();
+    int contador = 0; //contador usado no isPlayerTurn()
   
     //array de card cartas
 
@@ -68,11 +69,11 @@ public class GameImpl implements Game {
      */
     public Card getTableCard(){
         Card[] todasCartas = Card.createCards(); 
-        Player jogador1 = getRedPlayer();    
+       /* Player jogador1 = getRedPlayer();    
         Player jogador2 = getBluePlayer();  
-        
-        Card cartas1 = new Card(cartas1.getName(), Color.RED, cartas1.getPositions() );
-        Card cartas2 = new Card(cartas2.getName(), Color.BLUE, cartas2.getPositions());
+
+        Card cartas1 = new Card(todasCartas.getName(), Color.RED, cartas1.getPositions() );
+        Card cartas2 = new Card(todasCartas.getName(), Color.BLUE, cartas2.getPositions());
 
         Card tableCard = null;
 
@@ -81,9 +82,9 @@ public class GameImpl implements Game {
                 tableCard = card;
                 break;
             }
-        }
+        }*/
 
-    return tableCard;
+    return todasCartas[0];
 }
 
      /**
@@ -117,9 +118,8 @@ public class GameImpl implements Game {
      */
     public void makeMove(Card card, Position cardMove, Position currentPos) throws IncorrectTurnOrderException, IllegalMovementException, InvalidCardException, InvalidPieceException{
     //Verificar se é a vez do jogador fazer um movimento
-    
-    if (!isPlayerTurn()) { 
-        //é um turno quando: 1- A primeira carta da mesa é da sua cor 2- Quando o adversário jogou sua carta e moveu sua peça
+    Color color;
+    if (!isPlayerTurn(color)) { 
         throw new IncorrectTurnOrderException("Não é a vez do jogador fazer um movimento.");
     }
      // Verificar se a peça está movendo para fora do tabuleiro
@@ -150,7 +150,7 @@ public class GameImpl implements Game {
     }
     Player player = new Player(getRedPlayer().getName(), Color.RED, player.getCards());
     player.swapCard(getTableCard(), card);
-}
+    }
 
     
     /**
@@ -164,7 +164,6 @@ public class GameImpl implements Game {
     public boolean checkVictory(Color color){
         Piece playerMestre = null;
         Piece opponentMestre = null;
-        //<Piece> pieces = new ArrayList<Piece>();
 
         // Encontrar o mestre do jogador e do adversário
         for (Piece piece : pecas) {
@@ -189,46 +188,43 @@ public class GameImpl implements Game {
         } else 
             throw new InvalidColorException("Cor inválida");
 
-        if (mestreAdversarioCapturado(playerMestre)) {
+        Spot spot = new Spot(playerMestre, temploAdversarioPosition);
+        if (mestreAdversarioCapturado(spot)) {
             return true;
         }
     return false;
     }
 
-    /**
-     * Método que imprime o tabuleiro no seu estado atual
-     * OBS: Esse método é opcional não será utilizado na correção, mas serve para acompanhar os resultados parciais do jogo
-     * @Override
-     */
-    public void printBoard(){
-
+    protected boolean isPlayerTurn(Color color){
+        boolean corAtual = getTableCard().getColor().equals(color);
+        while(contador == 0){
+            if (corAtual){
+                contador++;
+                return true;
+            }  
+            contador++;
+            return false;
     }
-
-    protected boolean isPlayerTurn(){
-        if (corDaPrimeiraCarta.equals(corDoJogadorAtual)) {
-    // É o turno do jogador atual
-    // Faça as ações necessárias para o turno
-} else {
-    // Não é o turno do jogador atual
-    // Execute alguma ação apropriada (por exemplo, exiba uma mensagem de erro)
-}
+        if(contador % 2 == 0){ //Se o contador for par o jogador do turno atual é igual ao do primeiro turno
+            if(corAtual)
+                return true;
+            return false;
     }
-    
-    public ArrayList<Piece> getPiece() {
-        int i = 0;
-        for (Piece piece : pecas) {
-            pecas.set(i, piece);
-            i++;
-        }
-    return pecas; 
+        if(!corAtual)
+            return true;
+        return false;
     }
     
-    public boolean mestreAdversarioCapturado(Piece playerMestre){
-        if (playerMestre.equals(null)) return false; // se o jogador nao possui mestre ele não pode vencer
-        if (playerMestre.getPosition().getRow().equals(temploAdversarioPosition.getRow()) && playerMestre.getPosition().getCol().equals(temploAdversarioPosition.getCol())) {
-
-
-        }
     
+    public boolean mestreAdversarioCapturado(Spot spot){
+        if (spot.getPiece().equals(null)) return false; // se o jogador nao possui mestre ele não pode vencer
+
+        if (spot.getPosition().getRow() == (spot.getPosition().getRow())){
+
+            if(spot.getPosition().getCol() == (spot.getPosition().getCol())){
+                return true;
+            }
+        } 
+    return false;
 }
 }

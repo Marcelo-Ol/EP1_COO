@@ -10,7 +10,6 @@ public class Card {
     private Position[] positions;
     
     private static ArrayList<Card> cartas = new ArrayList<Card>();
-    private static Card todasCartas[];
     private static Card devolveCartas[];
 
     /**
@@ -57,8 +56,6 @@ public class Card {
     public static Card[] createCards() {
         //embaralha
         Collections.shuffle(cartas);
-		for (int i = 0; i <= 7; i++)
-			todasCartas[i] = cartas.get(i);
         //devolve as 5
         for (int i = 0; i < 5; i++)
 			devolveCartas[i] = cartas.get(i);

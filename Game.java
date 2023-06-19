@@ -5,33 +5,6 @@ import java.util.ArrayList;
  */
 public interface Game {
 
-    /* TENTATIVA DE TENTAR CRIAR AS PEÇAS E OS SPOTS UNITÁRIOS DE CADA UMA
-
-    Piece piece = new Piece(Color.BLUE, false);
-    Position pos = new Position(0,0);
-    Spot spot = new Spot(piece, pos, Color.BLUE);
-
-    public static void createGame(){
-        piece.ArrayPieces(0);
-        piece.ArrayPieces(4);
-        
-        for(int i = 0; i < 5; i++){
-            
-            for(int j = 0; j < 11; j++){
-                if (i == 0 && 0 <= j && j <= 4){
-                    Position pos = new Position(i, j);
-                    Spot spot = new Spot(piece.getPiece(j), pos, piece.getPiece(j).color);
-                    spot.spots.add(spot);
-                }
-
-                if (i == 4 && 5 <= j && j <= 10){
-                    piece.pieces[j];
-                }
-            }
-
-        }
-    }*/
-
     /**
      * Método que devolve a cor da posição do tabuleiro. Se possui uma cor, significa que é um templo. Caso contrário, é um espaço normal
      * @param position Posição do tabuleiro
@@ -84,16 +57,5 @@ public interface Game {
      * @return Um booleano true para caso esteja em condições de vencer e false caso contrário
      */
     boolean checkVictory(Color color);
-    
-    /**
-     * Método que imprime o tabuleiro no seu estado atual
-     * OBS: Esse método é opcional não será utilizado na correção, mas serve para acompanhar os resultados parciais do jogo
-     */
-    void printBoard();
 
-    /**
-     * 
-     * @return
-     */
-    public ArrayList<Piece> getPiece();
 }
