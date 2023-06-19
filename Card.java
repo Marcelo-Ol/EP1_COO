@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * Classe que contém informações das cartas
@@ -9,7 +10,7 @@ public class Card {
     private Color color;
     private Position[] positions;
     
-    private static ArrayList<Card> cartas = new ArrayList<Card>();
+    private static List<Card> cartas = new ArrayList<Card>();
     private static Card devolveCartas[];
 
     /**

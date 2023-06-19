@@ -77,9 +77,6 @@ public class Player {
     }
 
     protected Boolean cardInGame(Card carta){
-        /*Card[] deck = Card.createCards();
-        Card newCard = carta;
-            return deck.contains(carta);*/
         Card[] cartas = Card.createCards();
         Card newCard = carta;
             for(int i = 0; i < 5; i++){

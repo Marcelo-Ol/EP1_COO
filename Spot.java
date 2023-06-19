@@ -7,6 +7,7 @@ public class Spot {
     private Position pos;
     private Color color;
 
+
     /**
      * Construtor para espaços com peça e com cor
      * @param piece Peça que inicia nesse espaço do tabuleiro

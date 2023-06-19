@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class GameImpl implements Game {
 
@@ -7,6 +8,7 @@ public class GameImpl implements Game {
     private String jogador2;
     public Card[] cartas;
     private ArrayList<Piece> pecas = new ArrayList<Piece>();
+    private static List<Spot> locais = new ArrayList<Spot>();
     int contador = 0; //contador usado no isPlayerTurn()
   
     //array de card cartas
@@ -117,39 +119,37 @@ public class GameImpl implements Game {
      * @Override
      */
     public void makeMove(Card card, Position cardMove, Position currentPos) throws IncorrectTurnOrderException, IllegalMovementException, InvalidCardException, InvalidPieceException{
-    //Verificar se é a vez do jogador fazer um movimento
-    Color color;
-    if (!isPlayerTurn(color)) { 
-        throw new IncorrectTurnOrderException("Não é a vez do jogador fazer um movimento.");
-    }
-     // Verificar se a peça está movendo para fora do tabuleiro
-    if (isOutOfBounds(cardMove)) {
-        throw new IllegalMovementException("A peça está sendo movida para fora do tabuleiro.");
-    }
-    // Verificar se há uma peça da mesma cor na posição de destino
-    Piece targetPiece = getPieceAtPosition(cardMove);
-    if (!targetPiece.equals(null) && targetPiece.getColor().equal(currentPiece.getColor())) {
-        throw new IllegalMovementException("A peça não pode ser movida para uma posição ocupada por uma peça da mesma cor.");
-    }
-    // Verificar se a carta está na mão do jogador
-    if (!isCardInHand(card)) {
-        throw new InvalidCardException("A carta usada não está na mão do jogador.");
-    }
-    // Obter a peça atualmente na posição atual
-    Piece currentPiece = getPieceAtPosition(currentPos);
-    // Verificar se há uma peça na posição atual
-    if (currentPiece == null) {
-        throw new InvalidPieceException("Não há uma peça na posição atual.");
-    }
-    currentPos.setRow(currentPos.getRow() + cardMove.getRow()); 
-    currentPos.setCol(currentPos.getCol() + cardMove.getCol()); 
+        Color color;
+        if (!isPlayerTurn(color)) { 
+            throw new IncorrectTurnOrderException("Não é a vez do jogador fazer um movimento.");
+        }
 
-    // Remover a carta da mão do jogador - swap cards
-    if(card.getColor().equals(Color.BLUE)){
-        Player player = new Player(getBluePlayer().getName(), Color.BLUE, player.getCards());
-    }
-    Player player = new Player(getRedPlayer().getName(), Color.RED, player.getCards());
-    player.swapCard(getTableCard(), card);
+        if (isOutOfBounds(cardMove, currentPos)) {
+            throw new IllegalMovementException("A peça está sendo movida para fora do tabuleiro.");
+        }
+
+        Piece targetPiece = getPieceAtPosition(cardMove);
+        if (!targetPiece.equals(null) && targetPiece.getColor().equals(color)) {
+            throw new IllegalMovementException("A peça não pode ser movida para uma posição ocupada por uma peça da mesma cor.");
+        }
+
+        if (!isCardInHand(card)) {
+            throw new InvalidCardException("A carta usada não está na mão do jogador.");
+        }
+    
+        Piece currentPiece = getPieceAtPosition(currentPos);
+    
+        if (currentPiece == null) {
+            throw new InvalidPieceException("Não há uma peça na posição atual.");
+        }
+        currentPos.setRow(currentPos.getRow() + cardMove.getRow()); 
+        currentPos.setCol(currentPos.getCol() + cardMove.getCol()); 
+
+        if(card.getColor().equals(Color.BLUE)){
+            Player player = new Player(getBluePlayer().getName(), Color.BLUE, player.getCards());
+        }
+        Player player = new Player(getRedPlayer().getName(), Color.RED, player.getCards());
+        player.swapCard(getTableCard(), card);
     }
 
     
@@ -195,7 +195,7 @@ public class GameImpl implements Game {
     return false;
     }
 
-    protected boolean isPlayerTurn(Color color){
+    private boolean isPlayerTurn(Color color){
         boolean corAtual = getTableCard().getColor().equals(color);
         while(contador == 0){
             if (corAtual){
@@ -216,7 +216,7 @@ public class GameImpl implements Game {
     }
     
     
-    public boolean mestreAdversarioCapturado(Spot spot){
+    private boolean mestreAdversarioCapturado(Spot spot){
         if (spot.getPiece().equals(null)) return false; // se o jogador nao possui mestre ele não pode vencer
 
         if (spot.getPosition().getRow() == (spot.getPosition().getRow())){
@@ -226,5 +226,28 @@ public class GameImpl implements Game {
             }
         } 
     return false;
-}
+    }
+
+    private boolean isOutOfBounds(Position cardMove, Position currentPos){
+        Position outOfBounds = new Position(0, 0);
+        outOfBounds.setRow(currentPos.getRow() + cardMove.getRow());
+        outOfBounds.setCol(currentPos.getCol() + cardMove.getCol()); 
+
+        if(outOfBounds.getRow() > 4 || outOfBounds.getRow() < 0 ){
+            return true;
+        }
+        if(outOfBounds.getCol() > 4 || outOfBounds.getCol() < 0 ){
+            return true;
+        }
+        return false;
+    }
+
+private Piece getPieceAtPosition(Position posicao){
+    for (int i = 0; i < locais.size(); i++){
+		if(locais.get(i).getPosition() == posicao)
+            Color corPeca = locais.get(i).getColor();
+            return locais.get(i).getPiece();
+    }
+    return null;
+    }
 }
