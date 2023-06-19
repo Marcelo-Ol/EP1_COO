@@ -75,7 +75,12 @@ public class Player {
         int indexNew = cartas.indexOf(newCard);
         Collections.swap(cartas, indexOld, indexNew);
     }
-
+    
+    /**
+     * Método que verifica se a carta está na mão do jogador ou na mesa
+     * @param carta A carta analisada
+     * @return Booleano true se a carta estiver na mão do jogador ou na mesa e false caso contrário
+     */
     protected Boolean cardInGame(Card carta){
         Card[] cartas = Card.createCards();
         Card newCard = carta;
